@@ -6,17 +6,10 @@ import random as rnd
 def start_game():
     global word, category, guesses_left, guessed_letters, word_display
    
-
-#Cria a janela principal
-window = tk.Tk()
-window.title("Jogo da Forca")
-
-
-
+   
 # Start the game
 start_game()
 
-window.mainloop()
 
 import tkinter as tk
 from tkinter import messagebox
