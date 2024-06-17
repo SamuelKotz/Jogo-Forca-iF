@@ -1,6 +1,6 @@
 while True:
   continuar = input('Deseja jogar o jogo da forca(s/n)? ')
-  if continuar.lower == 'n':
+  if continuar.lower() == 'n':
     break
 
 
@@ -53,7 +53,7 @@ while True:
         if letra == palavra1[i]:
           incognita = incognita[:i] + letra + incognita[i+1:]
           if incognita == palavra1:
-            print(f'Parabéns, você acertou a palavra {palavra1}!')
+            print(f'Parabéns, você acertou a palavra {palavra1.upper()}!')
             break
   
         else:
@@ -68,7 +68,7 @@ while True:
         break
     
       if guess == 10:
-        print(f'Você perdeu, a palavra era {palavra1}')
+        print(f'Você perdeu, a palavra era {palavra1.upper()}')
 
       print(incognita)
   
@@ -78,5 +78,4 @@ while True:
   
       print()
       print()
-      error = 0
-    
+      error = 0   
