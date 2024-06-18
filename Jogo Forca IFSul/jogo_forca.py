@@ -21,11 +21,13 @@ frutas = ['maça', 'pera', 'laranja', 'uva', 'banana', 'manga', 'melancia', 'mor
 animal = ['cachorro', 'gato', 'papagaio', 'cavalo', 'camelo', 'girafa', 'rato', 'tigre']
 objeto = ['cadeira', 'mesa', 'bolsa', 'fone', 'celular', 'notebook', 'lapis', 'tênis']
 
+
 def start_game():
     global word, category, guesses_left, guessed_letters, word_display
     guesses_left = 10
     guessed_letters = []
     word_display = []
+    img["file"] = "erro=0.png"
 
     # Choose a random word and category
     npalavra = rnd.randint(0, 7)
@@ -47,6 +49,7 @@ def start_game():
     # Update the display
     update_display()
 
+
 def handle_guess():
     global guesses_left, guessed_letters, word_display
     guess = guess_entry.get().lower()
@@ -57,7 +60,7 @@ def handle_guess():
         return
 
     if guess in guessed_letters:
-        messagebox.showinfo("Essa letra já foi usada")
+        messagebox.showinfo("Entrada inválida", "Esta letra já foi usada!")
         return
 
     guessed_letters.append(guess)
@@ -74,35 +77,35 @@ def handle_guess():
     else:
         guesses_left -= 1
         if guesses_left == 9:
-            img["file"] = "erro=0.png"
-            update_display()
-        if guesses_left == 8:
             img["file"] = "erro=1.png"
             update_display()
-        if guesses_left == 7:
+        if guesses_left == 8:
             img["file"] = "erro=2.png"
             update_display()
-        if guesses_left == 6:
+        if guesses_left == 7:
             img["file"] = "erro=3.png"
             update_display()
-        if guesses_left == 5:
+        if guesses_left == 6:
             img["file"] = "erro=4.png"
             update_display()
-        if guesses_left == 4:
+        if guesses_left == 5:
             img["file"] = "erro=5.png"
             update_display()
-        if guesses_left == 3:
+        if guesses_left == 4:
             img["file"] = "erro=6.png"
             update_display()
-        if guesses_left == 2:
+        if guesses_left == 3:
             img["file"] = "erro=7.png"
             update_display()
-        if guesses_left == 1:
+        if guesses_left == 2:
             img["file"] = "erro=8.png"
+            update_display()
+        if guesses_left == 1:
+            img["file"] = "erro=9.png"
             update_display()
         
         if guesses_left == 0:
-            img["file"] = "erro=9.png"
+            img["file"] = "erro=10.png"
             update_display()
             messagebox.showinfo("Você não acertou", f"Infelizmente suas tentativas acabaram, a palavra era {word.upper()}.")
             reset_game()
@@ -123,6 +126,7 @@ def reset_game():
     guessed_letters = []
     word_display = []
     start_game()
+    
 
 # Create the main window
 window = tk.Tk()
@@ -142,23 +146,21 @@ guessed_label = tk.Label(window, text="Letras Já Tentadas: ", font=("Arial", 14
 guessed_label.grid(row=3, column=0, pady=5)
 
 # Create entry field for guess
-guess_entry = tk.Entry(window, font=("Arial", 14), width=2)
+guess_entry = tk.Entry(window, font=("Arial", 14), width=2)  
 guess_entry.grid(row=4, column=0, pady=10)
 
 # Create submit button
 submit_button = tk.Button(window, text="Enviar", font=("Arial", 14), command=handle_guess)
 submit_button.grid(row=5, column=0)
 
-img = PhotoImage(file="")
+img = PhotoImage(file="erro=0.png")
 label_img = Label(window, image=img)
 label_img.grid(column=0, row=6, pady=10)
+
+
 
 # Start the game
 start_game()
 
 window.mainloop()
-
-
-
-
 
